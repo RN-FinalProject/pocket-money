@@ -1,10 +1,8 @@
 import React from "react";
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 const Write = () => {
-    <Container>
-        write
-    </Container>
+  <Text>write</Text>;
 };
 
 export default Write;
