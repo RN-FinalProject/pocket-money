@@ -1,9 +1,9 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import Home from "../Home";
-import List from "../List";
-import Write from "../Write";
+import Home from "../screens/Home";
+import List from "../screens/List";
+import Write from "../screens/Write";
 
 const Tab = createBottomTabNavigator();
 
