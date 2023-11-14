@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components/native";
-
+import { Text } from "react-native";
 const Write = () => {
-  <Text>write</Text>;
+  return <Text>write</Text>;
 };
 
 export default Write;

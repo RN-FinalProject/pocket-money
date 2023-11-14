@@ -1,10 +1,8 @@
 import React from "react";
-import styled from 'styled-components/native';
-
+import styled from "styled-components/native";
+import { Text } from "react-native";
 const Home = () => {
-    <Container>
-        home
-    </Container>
+  return <Text>home</Text>;
 };
 
 export default Home;
