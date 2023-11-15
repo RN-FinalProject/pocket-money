@@ -7,7 +7,7 @@ import { theme } from "../theme";
 const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.background};
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 `;
 
