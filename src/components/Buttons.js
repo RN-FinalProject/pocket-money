@@ -1,7 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components/native";
 import { TouchableOpacity, Text } from "react-native";
 import PropTypes from "prop-types";
+import theme from "../theme";
 
 // 버튼 사용법
 // <Button
@@ -24,7 +25,7 @@ const ButtonContainer = styled.TouchableOpacity`
   border-radius: ${({ borderRadius }) => borderRadius || "25px"};
   align-items: center;
   justify-content: center;
-  //   margin: 6px;
+  margin: 6px;
 `;
 const ButtonText = styled.Text`
   color: ${({ textColor }) => textColor || "#fff"};
@@ -32,17 +33,19 @@ const ButtonText = styled.Text`
 `;
 export const Button = (props) => {
   return (
-    <ButtonContainer
-      width={props.width}
-      height={props.height}
-      borderColor={props.borderColor}
-      backgroundColor={props.backgroundColor}
-      borderRadius={props.borderRadius}
-    >
-      <ButtonText textColor={props.textColor} fontSize={props.fontSize}>
-        {props.children || props.title}
-      </ButtonText>
-    </ButtonContainer>
+    <ThemeProvider theme={theme}>
+      <ButtonContainer
+        width={props.width}
+        height={props.height}
+        borderColor={props.borderColor}
+        backgroundColor={props.backgroundColor}
+        borderRadius={props.borderRadius}
+      >
+        <ButtonText textColor={props.textColor} fontSize={props.fontSize}>
+          {props.children || props.title}
+        </ButtonText>
+      </ButtonContainer>
+    </ThemeProvider>
   );
 };
 Button.defaultProps = {
