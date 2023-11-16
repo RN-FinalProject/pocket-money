@@ -1,7 +1,8 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components/native";
-import { Text } from "react-native";
+import { Text, Image } from "react-native";
 import { theme } from "../theme";
+import { images } from "../images";
 
 //styled-component View
 const Container = styled.View`
@@ -15,7 +16,8 @@ const Home = () => {
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Text>home</Text>
+        <Image source={images.pocket}/>
+        <Text>거래내역</Text>
       </Container>
     </ThemeProvider>
   );
