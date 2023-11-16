@@ -9,10 +9,13 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/noto-sans-kr": "^0.2.3",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
     "expo": "~49.0.15",
+    "expo-app-loading": "^2.1.1",
+    "expo-font": "~11.4.0",
     "expo-status-bar": "~1.6.0",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
