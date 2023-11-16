@@ -1,15 +1,20 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components/native";
-import {  Text as BaseText } from "react-native";
+import { Text as BaseText } from "react-native";
 import { theme } from "../theme";
 import BigInput from "../components/Input";
 import DateInput from "../components/DateInput";
-
+import { Button } from "../components/Buttons";
 //styled-component View
 const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.background};
-
+`;
+const ButtonContainer = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-vertical: 10px;
 `;
 
 const Text = styled(BaseText)`
@@ -23,12 +28,22 @@ const Write = () => {
     <ThemeProvider theme={theme}>
       <Container>
         <Text>날짜</Text>
-        <DateInput/>
+        <DateInput />
         <Text>입출금</Text>
+        <ButtonContainer>
+          <Button>입금</Button>
+          <Button backgroundColor={theme.nagative}>출금</Button>
+        </ButtonContainer>
         <Text>내용</Text>
-        <BigInput/>
+        <BigInput />
         <Text>금액</Text>
-        <BigInput/>
+        <BigInput />
+        <Button width="345px" height="65px">
+          입력
+        </Button>
+        <Button width="345px" height="65px" backgroundColor={theme.nagative}>
+          닫기
+        </Button>
       </Container>
     </ThemeProvider>
   );
