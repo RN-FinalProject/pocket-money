@@ -1,12 +1,4 @@
 import React from "react";
-<<<<<<< Updated upstream
-import styled from 'styled-components/native';
-
-const Home = () => {
-    <Container>
-        home
-    </Container>
-=======
 import styled, { ThemeProvider } from "styled-components/native";
 import { Text, Image } from "react-native";
 import { theme } from "../theme";
@@ -29,7 +21,6 @@ const Home = () => {
       </Container>
     </ThemeProvider>
   );
->>>>>>> Stashed changes
 };
 
 export default Home;
