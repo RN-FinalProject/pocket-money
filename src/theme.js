@@ -4,5 +4,6 @@ export const theme = {
   nagative: "#FE731D",
   black: "#000000",
   white: "#ffffff",
+  text: "#000",
 };
 export default theme;
