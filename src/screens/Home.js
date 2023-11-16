@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Image source={images.pocket}/>
+        <Image source={images.pocket} />
         <Text>거래내역</Text>
       </Container>
     </ThemeProvider>
