@@ -17,6 +17,12 @@ const ButtonContainer = styled.View`
   margin-vertical: 10px;
 `;
 
+const ButtonContainer2 = styled.View`
+  justify-content: bottom;
+  align-items: center;
+  margin-vertical: 10px;
+`;
+
 const Text = styled(BaseText)`
   color: ${({ theme }) => theme.text};
   font-size: 24px;
@@ -38,12 +44,14 @@ const Write = () => {
         <BigInput />
         <Text>금액</Text>
         <BigInput />
-        <Button width="345px" height="65px">
-          입력
-        </Button>
-        <Button width="345px" height="65px" backgroundColor={theme.nagative}>
-          닫기
-        </Button>
+        <ButtonContainer2>
+          <Button width="345px" height="65px">
+            입력
+          </Button>
+          <Button width="345px" height="65px" backgroundColor={theme.nagative}>
+            닫기
+          </Button>
+        </ButtonContainer2>
       </Container>
     </ThemeProvider>
   );
