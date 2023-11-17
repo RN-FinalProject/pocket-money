@@ -27,6 +27,7 @@ const Text = styled(BaseText)`
   color: ${({ theme }) => theme.text};
   font-size: 24px;
   font-weight: 500;
+  margin-left: 35px;
 `;
 
 const Write = () => {
