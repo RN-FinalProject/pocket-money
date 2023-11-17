@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from "styled-components/native";
 import { Text } from "react-native";
 import { theme } from "../theme";
 import { Button } from "../components/Buttons";
+import { useNavigation } from "@react-navigation/native";
 //styled-component View
 const Container = styled.View`
   flex: 1;
@@ -12,6 +13,13 @@ const Container = styled.View`
 `;
 
 const List = () => {
+  const navigation = useNavigation();
+
+  const handleButtonClick = () => {
+    // Navigate to the Write screen
+    navigation.navigate("거래내역 입력");
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -23,6 +31,7 @@ const List = () => {
           backgroundColor={theme.white}
           borderColor={theme.positive}
           borderRadius="17px"
+          onPress={handleButtonClick}
         >
           거래내역 추가하기
         </Button>

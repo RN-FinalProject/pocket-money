@@ -5,6 +5,7 @@ import { theme } from "../theme";
 import BigInput from "../components/Input";
 import DateInput from "../components/DateInput";
 import { Button } from "../components/Buttons";
+import { useNavigation } from "@react-navigation/native";
 //styled-component View
 const Container = styled.View`
   flex: 1;
@@ -27,9 +28,16 @@ const Text = styled(BaseText)`
   color: ${({ theme }) => theme.text};
   font-size: 24px;
   font-weight: 500;
+  margin-left: 35px;
 `;
 
 const Write = () => {
+  const navigation = useNavigation();
+
+  const handleClose = () => {
+    navigation.goBack();
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -48,7 +56,12 @@ const Write = () => {
           <Button width="345px" height="65px">
             입력
           </Button>
-          <Button width="345px" height="65px" backgroundColor={theme.nagative}>
+          <Button
+            width="345px"
+            height="65px"
+            backgroundColor={theme.nagative}
+            onPress={handleClose}
+          >
             닫기
           </Button>
         </ButtonContainer2>
