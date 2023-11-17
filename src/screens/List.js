@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import { Text } from "react-native";
 import { theme } from "../theme";
 import { Button } from "../components/Buttons";
+import { useNavigation } from "@react-navigation/native";
 import { Dimensions } from 'react-native';
+
 
 //styled-component View
 const Container = styled.View`
@@ -77,7 +79,16 @@ const Inventory = styled.ScrollView`
 `;
 
 const List = () => {
+
+  const navigation = useNavigation();
+
+  const handleButtonClick = () => {
+    // Navigate to the Write screen
+    navigation.navigate("거래내역 입력");
+  };
+
   const width = Dimensions.get('window').width;
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -89,6 +100,7 @@ const List = () => {
           backgroundColor={theme.white}
           borderColor={theme.positive}
           borderRadius="17px"
+          onPress={handleButtonClick}
         >
           거래내역 추가하기
         </Button>
