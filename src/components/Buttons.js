@@ -35,6 +35,7 @@ export const Button = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <ButtonContainer
+        onPress={props.onPress}
         width={props.width}
         height={props.height}
         borderColor={props.borderColor}
