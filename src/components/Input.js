@@ -1,6 +1,6 @@
 import React from "react";
-import styled from 'styled-components/native';
-import { Dimensions } from 'react-native';
+import styled from "styled-components/native";
+import { Dimensions } from "react-native";
 
 const InputContainer = styled.View`
   align-items: center;
@@ -9,27 +9,25 @@ const InputContainer = styled.View`
 `;
 
 const StyledBigInput = styled.TextInput`
-width: ${({ width}) => width - 60}px;
-height: 72px;
-border-radius: 17px;
-margin: 3px 0px;
-padding: 15px 20px;
-background-color: ${({ theme}) => theme.white};
-font-size: 20PX;
-color: ${({ theme }) => theme.text};
-justify-content: center;
-align-items: center;
-margin: 3px 0px;
+  width: ${({ width }) => width - 60}px;
+  height: 72px;
+  border-radius: 17px;
+  margin: 3px 0px;
+  padding: 15px 20px;
+  background-color: ${({ theme }) => theme.white};
+  font-size: 20px;
+  color: ${({ theme }) => theme.text};
+  justify-content: center;
+  align-items: center;
+  margin: 3px 0px;
 `;
 
-
-
 const BigInput = () => {
-    const width = Dimensions.get('window').width;
-    return (
+  const width = Dimensions.get("window").width;
+  return (
     <InputContainer>
-        <StyledBigInput width={width}/>
+      <StyledBigInput width={width} />
     </InputContainer>
-    );
-}
-export default BigInput; 
+  );
+};
+export default BigInput;
