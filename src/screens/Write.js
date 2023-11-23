@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled, { ThemeProvider } from "styled-components/native";
 import { Text as BaseText } from "react-native";
 import { theme } from "../theme";
 import BigInput from "../components/Input";
 import DateInput from "../components/DateInput";
 import { Button } from "../components/Buttons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 //styled-component View
 const Container = styled.View`
   flex: 1;
@@ -33,10 +34,21 @@ const Text = styled(BaseText)`
 
 const Write = () => {
   const navigation = useNavigation();
-
   const handleClose = () => {
     navigation.goBack();
   };
+
+  const [selectButton, setSelectButton] = useState("");
+
+  const handleButtonClick = (buttonType) => {
+    setSelectButton(buttonType);
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      setSelectButton("");
+    }, [])
+  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -45,8 +57,26 @@ const Write = () => {
         <DateInput />
         <Text>입출금</Text>
         <ButtonContainer>
-          <Button>입금</Button>
-          <Button backgroundColor={theme.nagative}>출금</Button>
+          <Button
+            onPress={() => handleButtonClick("입금")}
+            backgroundColor={
+              selectButton === "입금" || selectButton === ""
+                ? theme.positive
+                : theme.positiveLight
+            }
+          >
+            입금
+          </Button>
+          <Button
+            onPress={() => handleButtonClick("출금")}
+            backgroundColor={
+              selectButton === "출금" || selectButton === ""
+                ? theme.negative
+                : theme.negativeLight
+            }
+          >
+            출금
+          </Button>
         </ButtonContainer>
         <Text>내용</Text>
         <BigInput />
@@ -59,7 +89,7 @@ const Write = () => {
           <Button
             width="345px"
             height="65px"
-            backgroundColor={theme.nagative}
+            backgroundColor={theme.negative}
             onPress={handleClose}
           >
             닫기

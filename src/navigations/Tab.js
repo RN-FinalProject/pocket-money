@@ -55,7 +55,7 @@ const TabNavigator = () => {
                 width: 30,
                 height: 30,
                 //tintColor: focused ? theme.white : theme.black,
-                tintColor: focused ? theme.nagative : theme.white,
+                tintColor: focused ? theme.negative : theme.white,
                 alignSelf: "center",
               }}
             ></Image>
@@ -74,7 +74,7 @@ const TabNavigator = () => {
                 height: 30,
                 alignSelf: "center",
                 //tintColor: focused ? theme.white : theme.black,
-                tintColor: focused ? theme.nagative : theme.white,
+                tintColor: focused ? theme.negative : theme.white,
               }}
             ></Image>
           ),
@@ -92,7 +92,7 @@ const TabNavigator = () => {
                 height: 30,
                 alignSelf: "center",
                 //tintColor: focused ? theme.white : theme.black,
-                tintColor: focused ? theme.nagative : theme.white,
+                tintColor: focused ? theme.negative : theme.white,
               }}
             ></Image>
           ),
