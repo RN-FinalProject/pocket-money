@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
-
+import PropTypes from "prop-types";
 const InputContainer = styled.View`
   align-items: center;
   justify-content: center;
@@ -22,12 +22,16 @@ const StyledBigInput = styled.TextInput`
   margin: 3px 0px;
 `;
 
-const BigInput = () => {
+const BigInput = (props) => {
   const width = Dimensions.get("window").width;
   return (
     <InputContainer>
-      <StyledBigInput width={width} />
+      <StyledBigInput width={width} placeholder={props.placeholder} />
     </InputContainer>
   );
+};
+
+BigInput.propTypes = {
+  placeholder: PropTypes.string,
 };
 export default BigInput;
