@@ -79,9 +79,9 @@ const Write = () => {
           </Button>
         </ButtonContainer>
         <Text>내용</Text>
-        <BigInput />
+        <BigInput placeholder="용돈" />
         <Text>금액</Text>
-        <BigInput />
+        <BigInput placeholder="10000" />
         <ButtonContainer2>
           <Button width="345px" height="65px">
             입력
