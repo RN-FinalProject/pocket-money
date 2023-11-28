@@ -26,12 +26,22 @@ const BigInput = (props) => {
   const width = Dimensions.get("window").width;
   return (
     <InputContainer>
-      <StyledBigInput width={width} placeholder={props.placeholder} />
+      <StyledBigInput
+        width={width}
+        placeholder={props.placeholder}
+        keyboardType={props.keyboardType}
+        maxLength={props.maxLength}
+        value={props.value}
+        onChangeText={props.onChangeText}
+      />
     </InputContainer>
   );
 };
 
 BigInput.propTypes = {
   placeholder: PropTypes.string,
+  keyboardType: PropTypes.string,
+  maxLength: PropTypes.number,
+  onChangeText: PropTypes.func,
 };
 export default BigInput;
