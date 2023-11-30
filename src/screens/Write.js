@@ -85,6 +85,7 @@ const Write = () => {
   };
 
   const handleInputButton = () => {
+    dateFormat();
     navigation.navigate("전체내역");
   };
 
@@ -178,6 +179,7 @@ const Write = () => {
             닫기
           </Button>
         </ButtonContainer2>
+        <Text>{date}</Text>
       </Container>
     </ThemeProvider>
   );
