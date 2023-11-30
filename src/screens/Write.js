@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import styled, { ThemeProvider } from "styled-components/native";
-import { Text as BaseText } from "react-native";
+import { Text as BaseText, Alert } from "react-native";
 import { theme } from "../theme";
 import BigInput from "../components/Input";
 import DateInput from "../components/DateInput";
@@ -65,8 +65,9 @@ const Write = () => {
   const dateFormat = () => {
     const datemonth = month.length === 1 ? `0${month}` : month;
     const dateDay = day.length === 1 ? `0${day}` : day;
-    setDate(`${year}-${datemonth}-${dateDay}`);
-    return date;
+    const formattedDate = `${year}-${datemonth}-${dateDay}`;
+    setDate(formattedDate); // date 상태를 직접 업데이트
+    return formattedDate; // 반환값도 변경된 값으로 수정
   };
   const handleYearChange = (text) => {
     setYear(text);
@@ -85,7 +86,12 @@ const Write = () => {
   };
 
   const handleInputButton = () => {
-    dateFormat();
+    const formattedDate = dateFormat(); // dateFormat()의 반환값을 변수에 저장
+    if (!year || !month || !day || !content || !amount)
+      Alert.alert("아차차!", "날짜! 내용! 금액!");
+    console.log(formattedDate); // 변경된 date 값을 출력
+    console.log(content);
+    console.log(amount);
     navigation.navigate("전체내역");
   };
 
@@ -98,6 +104,7 @@ const Write = () => {
       setContent("");
       setAmount("");
       setSign("");
+      setDate("");
     }, [])
   );
 
