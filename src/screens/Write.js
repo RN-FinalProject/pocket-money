@@ -46,13 +46,27 @@ const Write = () => {
   };
 
   const [selectButton, setSelectButton] = useState("");
+  const [sign, setSign] = useState("");
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
+  const [date, setDate] = useState("");
   const [content, setContent] = useState("");
   const [amount, setAmount] = useState("");
-  const handleButtonClick = (buttonType) => {
+
+  const handleIOButtonClick = (buttonType) => {
     setSelectButton(buttonType);
+    if (buttonType === "입금") {
+      setSign("+");
+    } else if (buttonType === "출금") {
+      setSign("-");
+    } else setSign("");
+  };
+  const dateFormat = () => {
+    const datemonth = month.length === 1 ? `0${month}` : month;
+    const dateDay = day.length === 1 ? `0${day}` : day;
+    setDate(`${year}-${datemonth}-${dateDay}`);
+    return date;
   };
   const handleYearChange = (text) => {
     setYear(text);
@@ -67,7 +81,11 @@ const Write = () => {
     setContent(text);
   };
   const handleAmountChange = (text) => {
-    setAmount(text);
+    parseInt(setAmount(text), 10);
+  };
+
+  const handleInputButton = () => {
+    navigation.navigate("전체내역");
   };
 
   useFocusEffect(
@@ -78,6 +96,7 @@ const Write = () => {
       setDay("");
       setContent("");
       setAmount("");
+      setSign("");
     }, [])
   );
 
@@ -85,6 +104,7 @@ const Write = () => {
     <ThemeProvider theme={theme}>
       <Container>
         <Text>날짜</Text>
+
         <DateInputContainer>
           <DateInput
             placeholder="2023"
@@ -111,7 +131,7 @@ const Write = () => {
         <Text>입출금</Text>
         <ButtonContainer>
           <Button
-            onPress={() => handleButtonClick("입금")}
+            onPress={() => handleIOButtonClick("입금")}
             backgroundColor={
               selectButton === "입금" || selectButton === ""
                 ? theme.positive
@@ -121,7 +141,7 @@ const Write = () => {
             입금
           </Button>
           <Button
-            onPress={() => handleButtonClick("출금")}
+            onPress={() => handleIOButtonClick("출금")}
             backgroundColor={
               selectButton === "출금" || selectButton === ""
                 ? theme.negative
@@ -146,7 +166,7 @@ const Write = () => {
           onChangeText={handleAmountChange}
         />
         <ButtonContainer2>
-          <Button width="345px" height="65px">
+          <Button width="345px" height="65px" onPress={handleInputButton}>
             입력
           </Button>
           <Button
