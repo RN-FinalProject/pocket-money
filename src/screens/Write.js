@@ -85,10 +85,28 @@ const Write = () => {
     parseInt(setAmount(text), 10);
   };
 
-  const handleInputButton = () => {
+  const handleInputButton = async () => {
     const formattedDate = dateFormat(); // dateFormat()의 반환값을 변수에 저장
-    if (!year || !month || !day || !content || !amount)
+    const data = {
+      [formattedDate]: {
+        date: formattedDate,
+        content: content,
+        amount: sign === "+" ? amount : `-${amount}`,
+      },
+    };
+    if (!year || !month || !day || !content || !amount) {
       Alert.alert("아차차!", "날짜! 내용! 금액!");
+      return;
+    }
+    if (sign === "") {
+      Alert.alert("아차차!", "입금? 출금?");
+      return;
+    }
+    try {
+      await AsyncStorage.setItem("data", JSON.stringify(data));
+    } catch (e) {
+      console.log(e);
+    }
     console.log(formattedDate); // 변경된 date 값을 출력
     console.log(content);
     console.log(amount);
