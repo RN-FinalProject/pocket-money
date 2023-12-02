@@ -76,10 +76,13 @@ const Inventory = styled.ScrollView`
   margin-top: 60px;
 `;
 
+
+
 const List = () => {
   const navigation = useNavigation();
-  const [newData, setNewData] = useState("");
   const [data, setData] = useState([]);
+  const [newData, setNewData] = useState("");
+
   const loadData = async () => {
     try {
       const storedData = await AsyncStorage.getItem("data");
@@ -88,15 +91,28 @@ const List = () => {
         // Convert the object values into an array for mapping
         const dataArray = Object.values(parsedData);
         setData(dataArray);
+        // setData(parsedData);
+        console.log(dataArray);
       }
     } catch (error) {
       console.error("Error fetching data from AsyncStorage:", error);
     }
   };
 
+  // useEffect를 사용하여 데이터를 자동으로 불러오도록 설정
   useEffect(() => {
+    // 화면이 포커스될 때마다 loadData 함수 호출
+    const unsubscribe = navigation.addListener('focus', () => {
+      loadData();
+    });
+
+    // 화면이 언마운트 될 때 구독 해제
+    return unsubscribe;
+  }, [navigation]);
+
+  {/*useEffect(() => {
     loadData();
-  }, []);
+  }, []);*/}
 
   const handleButtonClick = () => {
     // Navigate to the Write screen
@@ -129,13 +145,7 @@ const List = () => {
               price={item.amount.toString()}
             />
           ))}
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
+
         </Inventory>
       </Container>
     </ThemeProvider>
