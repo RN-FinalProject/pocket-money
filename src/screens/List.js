@@ -76,10 +76,13 @@ const Inventory = styled.ScrollView`
   margin-top: 60px;
 `;
 
+
+
 const List = () => {
   const navigation = useNavigation();
-  const [newData, setNewData] = useState("");
   const [data, setData] = useState([]);
+  const [newData, setNewData] = useState("");
+
   const loadData = async () => {
     try {
       const storedData = await AsyncStorage.getItem("data");
@@ -88,6 +91,8 @@ const List = () => {
         // Convert the object values into an array for mapping
         const dataArray = Object.values(parsedData);
         setData(dataArray);
+        // setData(parsedData);
+        console.log(dataArray);
       }
     } catch (error) {
       console.error("Error fetching data from AsyncStorage:", error);
@@ -129,13 +134,7 @@ const List = () => {
               price={item.amount.toString()}
             />
           ))}
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
-          <Items date="2023-11-17" content="넷플릭스" price="17000" />
+
         </Inventory>
       </Container>
     </ThemeProvider>
