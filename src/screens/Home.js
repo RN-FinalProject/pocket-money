@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components/native";
 import { Text, Image } from "react-native";
 import { theme } from "../theme";
 import { images } from "../images";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 //styled-component View
 const Container = styled.View`
   flex: 1;
@@ -36,7 +37,7 @@ const PriceContainer = styled.View`
 `;
 
 const PriceContainer2 = styled.View`
-  flex:1;
+  flex: 1;
 `;
 
 const StrPrice = styled.Text`
@@ -55,23 +56,80 @@ const NumPrice = styled.Text`
   color: ${({ theme }) => theme.black};
 `;
 
-
 //total - 총금액, deposit - 입금, withdraw - 출금
 const Home = () => {
+  const navigation = useNavigation();
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [deposit, setDeposit] = useState(0);
+  const [withdraw, setWithdraw] = useState(0);
+  const fetchData = async () => {
+    try {
+      // Retrieve data from AsyncStorage
+      const storedData = await AsyncStorage.getItem("data");
+      if (storedData) {
+        // Parse the stored data
+        const parsedData = JSON.parse(storedData);
+
+        // Calculate the sum of "amount" values
+        const depositSum = Object.values(parsedData).reduce(
+          (accumulator, entry) =>
+            accumulator +
+            (parseFloat(entry.amount) > 0 ? parseFloat(entry.amount) : 0),
+          0
+        );
+
+        const withdrawSum = Object.values(parsedData).reduce(
+          (accumulator, entry) =>
+            accumulator +
+            (parseFloat(entry.amount) < 0 ? parseFloat(entry.amount) : 0),
+          0
+        );
+
+        // Update the state with the total amount, deposit, and withdraw
+        setTotalAmount(depositSum + withdrawSum);
+        setDeposit(depositSum);
+        setWithdraw(withdrawSum);
+      }
+    } catch (error) {
+      console.error("Error retrieving data:", error);
+    }
+  };
+  useEffect(() => {
+    // 화면이 포커스될 때마다 loadData 함수 호출
+    const unsubscribe = navigation.addListener("focus", () => {
+      fetchData();
+    });
+
+    // 화면이 언마운트 될 때 구독 해제
+    return unsubscribe;
+  }, [navigation]);
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
         <Image source={images.pocket} />
         <TotalText>거래내역</TotalText>
-        <Total>300000원</Total>
+        <Total
+          style={{
+            color:
+              totalAmount > 0
+                ? theme.positive
+                : totalAmount < 0
+                ? theme.negative
+                : theme.black,
+          }}
+        >
+          {totalAmount > 0 ? "+" : ""}
+          {totalAmount}원
+        </Total>
         <PriceContainer>
           <PriceContainer2>
             <StrPrice>입금</StrPrice>
-            <NumPrice>1000000000</NumPrice>
+            <NumPrice style={{ color: theme.positive }}>+{deposit}</NumPrice>
           </PriceContainer2>
           <PriceContainer2>
             <StrPrice>출금</StrPrice>
-            <NumPrice>2000000000</NumPrice>
+            <NumPrice style={{ color: theme.negative }}>{withdraw}</NumPrice>
           </PriceContainer2>
         </PriceContainer>
       </Container>
