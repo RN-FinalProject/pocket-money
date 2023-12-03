@@ -116,9 +116,11 @@ const Write = () => {
         // 기존 데이터가 있다면 파싱하여 객체로 변환
         newData = JSON.parse(existingData);
       }
+      const id = Date.now().toString();
 
       // 새로운 데이터 추가
-      newData[formattedDate] = {
+      newData[id] = {
+        id: id,
         date: formattedDate,
         content: content,
         amount: sign === "+" ? amount : `-${amount}`,

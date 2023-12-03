@@ -120,16 +120,21 @@ const Home = () => {
           }}
         >
           {totalAmount > 0 ? "+" : ""}
-          {totalAmount}원
+          {totalAmount.toLocaleString()}원
         </Total>
         <PriceContainer>
           <PriceContainer2>
             <StrPrice>입금</StrPrice>
-            <NumPrice style={{ color: theme.positive }}>+{deposit}</NumPrice>
+            <NumPrice style={{ color: theme.positive }}>
+              {deposit > 0 ? "+" : ""}
+              {deposit.toLocaleString()}
+            </NumPrice>
           </PriceContainer2>
           <PriceContainer2>
             <StrPrice>출금</StrPrice>
-            <NumPrice style={{ color: theme.negative }}>{withdraw}</NumPrice>
+            <NumPrice style={{ color: theme.negative }}>
+              {withdraw.toLocaleString()}
+            </NumPrice>
           </PriceContainer2>
         </PriceContainer>
       </Container>
