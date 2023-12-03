@@ -85,7 +85,8 @@ const Write = () => {
     parseInt(setAmount(text), 10);
   };
 
-  {/*const [data, setData] = useState([]);
+  {
+    /*const [data, setData] = useState([]);
 
   const _addData = () => {
     const ID = Date.now().toString();
@@ -93,17 +94,11 @@ const Write = () => {
       [ID]: {id: ID, date: date, content: content, price: price},
       setData({...data, ...newDataObject});
     };
-  }*/}
+  }*/
+  }
 
   const handleInputButton = async () => {
     const formattedDate = dateFormat(); // dateFormat()의 반환값을 변수에 저장
-    const data = {
-      [formattedDate]: {
-        date: formattedDate,
-        content: content,
-        amount: sign === "+" ? amount : `-${amount}`,
-      },
-    };
     if (!year || !month || !day || !content || !amount) {
       Alert.alert("아차차!", "날짜! 내용! 금액!");
       return;
@@ -116,19 +111,19 @@ const Write = () => {
       // 기존 데이터 불러오기
       const existingData = await AsyncStorage.getItem("data");
       let newData = {};
-  
+
       if (existingData) {
         // 기존 데이터가 있다면 파싱하여 객체로 변환
         newData = JSON.parse(existingData);
       }
-  
+
       // 새로운 데이터 추가
       newData[formattedDate] = {
         date: formattedDate,
         content: content,
         amount: sign === "+" ? amount : `-${amount}`,
       };
-  
+
       // 수정된 전체 데이터 저장
       await AsyncStorage.setItem("data", JSON.stringify(newData));
     } catch (e) {
