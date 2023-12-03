@@ -91,6 +91,10 @@ const List = () => {
         const parsedData = JSON.parse(storedData);
         // Convert the object values into an array for mapping
         const dataArray = Object.values(parsedData);
+
+        // date를 기준으로 내림차순 정렬
+        dataArray.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
         setData(dataArray);
         // setData(parsedData);
         console.log(dataArray);
