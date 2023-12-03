@@ -7,6 +7,9 @@ import { Button } from "../components/Buttons";
 import { useNavigation } from "@react-navigation/native";
 import { Dimensions } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import IconButton from "../components/IconButton";
+import { images } from "../images";
+import Item from "../components/Item";
 
 //styled-component View
 const Container = styled.View`
@@ -16,58 +19,58 @@ const Container = styled.View`
   justify-content: center;
 `;
 
-const ItemContainer = styled.View`
-  background-color: ${({ theme }) => theme.white};
-  justify-content: center;
-  border-radius: 17px;
-  width: 345px;
-  height: 91px;
-  padding: 20px;
-  margin: 5px 0px;
-`;
+// const ItemContainer = styled.View`
+//   background-color: ${({ theme }) => theme.white};
+//   justify-content: center;
+//   border-radius: 17px;
+//   width: 345px;
+//   height: 91px;
+//   padding: 20px;
+//   margin: 5px 0px;
+// `;
 
-const TextContainer = styled.View`
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
+// const TextContainer = styled.View`
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
-const Date = styled.Text`
-  flex: 1;
-  font-size: 14px;
-  color: ${({ theme }) => theme.black};
-`;
+// const Date = styled.Text`
+//   flex: 1;
+//   font-size: 14px;
+//   color: ${({ theme }) => theme.black};
+// `;
 
-const Contents = styled.Text`
-  flex: 1;
-  font-size: 18px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.black};
-`;
+// const Contents = styled.Text`
+//   flex: 1;
+//   font-size: 18px;
+//   font-weight: 400;
+//   color: ${({ theme }) => theme.black};
+// `;
 
-const Price = styled.Text`
-  flex: 1;
-  font-size: 18px;
-  color: ${({ theme }) => theme.black};
-`;
+// const Price = styled.Text`
+//   flex: 1;
+//   font-size: 18px;
+//   color: ${({ theme }) => theme.black};
+// `;
 
-const Items = ({ date, content, price }) => {
-  return (
-    <ItemContainer>
-      <Date>{date}</Date>
-      <TextContainer>
-        <Contents>{content}</Contents>
-        <Price>{price}</Price>
-      </TextContainer>
-    </ItemContainer>
-  );
-};
+// const Items = ({ date, content, price }) => {
+//   return (
+//     <ItemContainer>
+//       <Date>{date}</Date>
+//       <TextContainer>
+//         <Contents>{content}</Contents>
+//         <Price>{price}</Price>
+//       </TextContainer>
+//     </ItemContainer>
+//   );
+// };
 
-Items.propTypes = {
-  date: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-};
+// Items.propTypes = {
+//   date: PropTypes.string.isRequired,
+//   content: PropTypes.string.isRequired,
+//   price: PropTypes.string.isRequired,
+// };
 
 const Inventory = styled.ScrollView`
   flex: 1;
@@ -75,8 +78,6 @@ const Inventory = styled.ScrollView`
   justify-contents: center;
   margin-top: 60px;
 `;
-
-
 
 const List = () => {
   const navigation = useNavigation();
@@ -102,7 +103,7 @@ const List = () => {
   // useEffect를 사용하여 데이터를 자동으로 불러오도록 설정
   useEffect(() => {
     // 화면이 포커스될 때마다 loadData 함수 호출
-    const unsubscribe = navigation.addListener('focus', () => {
+    const unsubscribe = navigation.addListener("focus", () => {
       loadData();
     });
 
@@ -110,9 +111,11 @@ const List = () => {
     return unsubscribe;
   }, [navigation]);
 
-  {/*useEffect(() => {
+  {
+    /*useEffect(() => {
     loadData();
-  }, []);*/}
+  }, []);*/
+  }
 
   const handleButtonClick = () => {
     // Navigate to the Write screen
@@ -138,14 +141,13 @@ const List = () => {
         </Button>
         <Inventory width={width} showsVerticalScrollIndicator={false}>
           {data.map((item, index) => (
-            <Items
+            <Item
               key={item.date}
               date={item.date}
               content={item.content}
               price={item.amount.toString()}
             />
           ))}
-
         </Inventory>
       </Container>
     </ThemeProvider>
