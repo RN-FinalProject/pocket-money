@@ -94,13 +94,34 @@ const List = () => {
 
         // date를 기준으로 내림차순 정렬
         dataArray.sort((a, b) => new Date(b.date) - new Date(a.date));
-        
+
         setData(dataArray);
         // setData(parsedData);
         console.log(dataArray);
       }
     } catch (error) {
       console.error("Error fetching data from AsyncStorage:", error);
+    }
+  };
+  const handleDeleteItem = async (itemId) => {
+    try {
+      // Load existing data from AsyncStorage
+      const storedData = await AsyncStorage.getItem("data");
+
+      if (storedData) {
+        const parsedData = JSON.parse(storedData);
+
+        // Delete the item with the specified ID
+        delete parsedData[itemId];
+
+        // Save the updated data back to AsyncStorage
+        await AsyncStorage.setItem("data", JSON.stringify(parsedData));
+
+        // Reload the data
+        loadData();
+      }
+    } catch (error) {
+      console.error("Error deleting item:", error);
     }
   };
 
@@ -146,10 +167,11 @@ const List = () => {
         <Inventory width={width} showsVerticalScrollIndicator={false}>
           {data.map((item, index) => (
             <Item
-              key={item.date}
+              key={item.id}
+              id={item.id}
               date={item.date}
               content={item.content}
-              price={item.amount.toString()}
+              price={item.amount}
             />
           ))}
         </Inventory>
