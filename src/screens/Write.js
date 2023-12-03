@@ -228,7 +228,6 @@ const Write = () => {
             닫기
           </Button>
         </ButtonContainer2>
-        <Text>{date}</Text>
       </Container>
     </ThemeProvider>
   );

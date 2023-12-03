@@ -52,7 +52,7 @@ const Item = ({ id, date, content, price, onDelete }) => {
       <Date>{date}</Date>
       <TextContainer>
         <Contents>{content}</Contents>
-        <Price>{price}</Price>
+        <Price>{price > 0 ? `+${price}` : `${price}`}</Price>
         <IconContainer>
           <IconButton
             type={images.delete}
