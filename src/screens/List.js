@@ -172,6 +172,7 @@ const List = () => {
               date={item.date}
               content={item.content}
               price={item.amount}
+              onDelete={handleDeleteItem}
             />
           ))}
         </Inventory>

@@ -42,7 +42,11 @@ const IconContainer = styled.View`
   justify-content: center;
   align-items: center;
 `;
-const Item = ({ date, content, price }) => {
+const Item = ({ id, date, content, price, onDelete }) => {
+  const handleDelete = () => {
+    // 삭제 버튼이 눌렸을 때 onDelete 함수를 아이템의 id와 함께 호출합니다.
+    onDelete(id);
+  };
   return (
     <Container>
       <Date>{date}</Date>
@@ -50,7 +54,10 @@ const Item = ({ date, content, price }) => {
         <Contents>{content}</Contents>
         <Price>{price}</Price>
         <IconContainer>
-          <IconButton type={images.delete}></IconButton>
+          <IconButton
+            type={images.delete}
+            onPressOut={handleDelete}
+          ></IconButton>
         </IconContainer>
       </TextContainer>
     </Container>
