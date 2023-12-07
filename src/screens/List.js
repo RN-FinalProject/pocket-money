@@ -89,14 +89,12 @@ const List = () => {
       const storedData = await AsyncStorage.getItem("data");
       if (storedData) {
         const parsedData = JSON.parse(storedData);
-        // Convert the object values into an array for mapping
         const dataArray = Object.values(parsedData);
 
         // date를 기준으로 내림차순 정렬
         dataArray.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         setData(dataArray);
-        // setData(parsedData);
         console.log(dataArray);
       }
     } catch (error) {
@@ -105,19 +103,16 @@ const List = () => {
   };
   const handleDeleteItem = async (itemId) => {
     try {
-      // Load existing data from AsyncStorage
       const storedData = await AsyncStorage.getItem("data");
 
       if (storedData) {
         const parsedData = JSON.parse(storedData);
 
-        // Delete the item with the specified ID
+        // Delete 특정 id
         delete parsedData[itemId];
 
-        // Save the updated data back to AsyncStorage
         await AsyncStorage.setItem("data", JSON.stringify(parsedData));
 
-        // Reload the data
         loadData();
       }
     } catch (error) {
@@ -125,25 +120,17 @@ const List = () => {
     }
   };
 
-  // useEffect를 사용하여 데이터를 자동으로 불러오도록 설정
   useEffect(() => {
     // 화면이 포커스될 때마다 loadData 함수 호출
     const unsubscribe = navigation.addListener("focus", () => {
       loadData();
     });
 
-    // 화면이 언마운트 될 때 구독 해제
     return unsubscribe;
   }, [navigation]);
 
-  {
-    /*useEffect(() => {
-    loadData();
-  }, []);*/
-  }
 
   const handleButtonClick = () => {
-    // Navigate to the Write screen
     navigation.navigate("거래내역 입력");
   };
 

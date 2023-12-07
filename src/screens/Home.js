@@ -20,8 +20,8 @@ const TotalText = styled.Text`
 `;
 
 const Total = styled.Text`
-  font-size: 48px;
-  font-weight: 900;
+  font-size: 42px;
+  font-weight: 700;
   color: ${({ theme }) => theme.positive};
 `;
 
@@ -52,7 +52,7 @@ const NumPrice = styled.Text`
   flex: 1;
   text-align: center;
   font-size: 32px;
-  font-weight: 900;
+  font-weight: 700;
   color: ${({ theme }) => theme.black};
 `;
 
@@ -64,13 +64,11 @@ const Home = () => {
   const [withdraw, setWithdraw] = useState(0);
   const fetchData = async () => {
     try {
-      // Retrieve data from AsyncStorage
       const storedData = await AsyncStorage.getItem("data");
       if (storedData) {
-        // Parse the stored data
         const parsedData = JSON.parse(storedData);
 
-        // Calculate the sum of "amount" values
+        // amount 합계 계산
         const depositSum = Object.values(parsedData).reduce(
           (accumulator, entry) =>
             accumulator +
@@ -85,7 +83,6 @@ const Home = () => {
           0
         );
 
-        // Update the state with the total amount, deposit, and withdraw
         setTotalAmount(depositSum + withdrawSum);
         setDeposit(depositSum);
         setWithdraw(withdrawSum);
@@ -95,12 +92,10 @@ const Home = () => {
     }
   };
   useEffect(() => {
-    // 화면이 포커스될 때마다 loadData 함수 호출
     const unsubscribe = navigation.addListener("focus", () => {
       fetchData();
     });
 
-    // 화면이 언마운트 될 때 구독 해제
     return unsubscribe;
   }, [navigation]);
 

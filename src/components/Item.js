@@ -44,7 +44,7 @@ const IconContainer = styled.View`
 `;
 const Item = ({ id, date, content, price, onDelete }) => {
   const handleDelete = () => {
-    // 삭제 버튼이 눌렸을 때 onDelete 함수를 아이템의 id와 함께 호출합니다.
+    // 삭제 버튼이 눌렸을 때 onDelete 함수를 아이템의 id와 함께 호출
     onDelete(id);
   };
   return (

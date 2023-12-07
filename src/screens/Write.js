@@ -29,7 +29,8 @@ const ButtonContainer = styled.View`
 const ButtonContainer2 = styled.View`
   justify-content: bottom;
   align-items: center;
-  margin-vertical: 10px;
+  margin-vertical: 50px
+  ;
 `;
 
 const Text = styled(BaseText)`
@@ -85,17 +86,6 @@ const Write = () => {
     parseInt(setAmount(text), 10);
   };
 
-  {
-    /*const [data, setData] = useState([]);
-
-  const _addData = () => {
-    const ID = Date.now().toString();
-    const newDataObject = {
-      [ID]: {id: ID, date: date, content: content, price: price},
-      setData({...data, ...newDataObject});
-    };
-  }*/
-  }
 
   const handleInputButton = async () => {
     const formattedDate = dateFormat(); // dateFormat()의 반환값을 변수에 저장
